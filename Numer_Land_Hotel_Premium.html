@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Numer Land Hotel | Hochzeitsmesse 2026</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Segoe UI,Arial,sans-serif;background:#0f172a;color:white}
+.hero{
+height:100vh;
+background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80");
+background-size:cover;background-position:center;
+display:flex;align-items:center;justify-content:center;text-align:center}
+.hero h1{font-size:5rem;color:#d4af37}
+.hero p{font-size:1.4rem;margin:20px 0}
+.btn{background:#d4af37;color:#111;padding:14px 28px;border:none;border-radius:30px;font-weight:bold;cursor:pointer}
+section{padding:60px 10%}
+.card{background:rgba(255,255,255,.08);backdrop-filter:blur(8px);padding:25px;border-radius:20px}
+input{width:100%;padding:14px;border-radius:12px;border:none;margin:10px 0}
+#timer{font-size:4rem;color:#d4af37;text-align:center}
+#drum{
+height:180px;overflow:hidden;background:white;color:black;
+border-radius:20px;padding:20px;font-size:2rem;text-align:center}
+#winners li{margin:10px 0;color:#d4af37}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
+.gallery img{width:100%;height:220px;object-fit:cover;border-radius:15px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<div>
+<h1>Numer Land Hotel</h1>
+<p>Exklusive Hochzeitsmesse 2026</p>
+<p>Gewinnen Sie traumhafte Hochzeitsvorteile für Ihren besonderen Tag</p>
+<a href="#promo"><button class="btn">Jetzt teilnehmen</button></a>
+</div>
+</div>
+
+<section>
+<h2>Unsere Hochzeitswelt</h2><br>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80">
+<img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80">
+<img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80">
+</div>
+</section>
+
+<section id="promo">
+<div class="card">
+<h2>Registrierung zur Verlosung</h2>
+<input id="name" placeholder="Vor- und Nachname">
+<button class="btn" onclick="addParticipant()">Registrieren</button>
+<p>Teilnehmer insgesamt: <span id="count">0</span></p>
+</div>
+</section>
+
+<section>
+<div class="card">
+<h2>Auslosung Countdown</h2>
+<div id="timer">02:00</div><br>
+<button class="btn" onclick="startDraw()">Auslosung starten</button>
+</div>
+</section>
+
+<section>
+<div class="card">
+<h2>Verlosungstrommel</h2>
+<div id="drum">Die Verlosung beginnt nach Ablauf des Countdowns ...</div>
+</div>
+</section>
+
+<section>
+<div class="card">
+<h2>Gewinnerliste</h2>
+<ul id="winners"></ul>
+</div>
+</section>
+
+<script>
+let participants=[];
+let started=false;
+
+function addParticipant(){
+ let n=document.getElementById("name").value.trim();
+ if(!n) return;
+ participants.push(n);
+ document.getElementById("count").innerText=participants.length;
+ document.getElementById("name").value="";
+}
+
+function startDraw(){
+ if(started) return;
+ started=true;
+
+ let seconds=120;
+ let timer=document.getElementById("timer");
+
+ let interval=setInterval(()=>{
+   let m=Math.floor(seconds/60);
+   let s=seconds%60;
+   timer.innerText=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+   seconds--;
+
+   if(seconds<0){
+      clearInterval(interval);
+      runDrum();
+   }
+ },1000);
+}
+
+function runDrum(){
+ if(participants.length<3){
+   document.getElementById("drum").innerHTML="Mindestens 3 Teilnehmer erforderlich.";
+   return;
+ }
+
+ let drum=document.getElementById("drum");
+ let i=0;
+
+ let spin=setInterval(()=>{
+    drum.innerHTML="<strong>"+participants[i%participants.length]+"</strong>";
+    i++;
+ },60);
+
+ setTimeout(()=>{
+   clearInterval(spin);
+
+   let pool=[...participants];
+   let prizes=[
+      "30% Rabatt auf die Hochzeitssuite",
+      "Kostenloses Candle-Light-Dinner",
+      "20% Rabatt auf den Hochzeitssaal",
+      "VIP Welcome Drink",
+      "Gratis Dessert für das Brautpaar"
+   ];
+
+   let winners=[];
+
+   for(let x=0;x<Math.min(5,pool.length);x++){
+      let idx=Math.floor(Math.random()*pool.length);
+      let person=pool.splice(idx,1)[0];
+      winners.push({person,prize:prizes[x]});
+   }
+
+   drum.innerHTML="🎉 Die Gewinner wurden ermittelt!";
+
+   let ul=document.getElementById("winners");
+   winners.forEach(w=>{
+      let li=document.createElement("li");
+      li.innerHTML="<strong>"+w.person+"</strong> – "+w.prize;
+      ul.appendChild(li);
+   });
+
+ },8000);
+}
+</script>
+
+</body>
+</html>

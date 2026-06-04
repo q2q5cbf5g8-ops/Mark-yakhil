@@ -1,111 +1,13 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nimerland-Hotel | Registrierung</title>
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-body{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:
-linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),
-url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80");
-background-size:cover;
-background-position:center;
-color:white;
-}
-
-.box{
-width:90%;
-max-width:550px;
-background:rgba(17,17,17,.95);
-padding:40px;
-border-radius:20px;
-border:2px solid #22c55e;
-text-align:center;
-}
-
-h1{
-color:#22c55e;
-margin-bottom:20px;
-font-size:2.5rem;
-}
-
-p{
-margin-bottom:25px;
-line-height:1.6;
-}
-
-input{
-width:100%;
-padding:15px;
-margin:10px 0;
-border:none;
-border-radius:10px;
-background:#222;
-color:white;
-font-size:16px;
-}
-
-button{
-width:100%;
-padding:15px;
-margin-top:15px;
-background:#22c55e;
-border:none;
-border-radius:30px;
-font-size:18px;
-font-weight:bold;
-cursor:pointer;
-}
-
-button:hover{
-opacity:.9;
-}
-</style>
-</head>
-
-<body>
-
-<div class="box">
-
-<h1>Nimerland-Hotel</h1>
-
-<p>
-Willkommen zur Hochzeitsmesse 2026.<br>
-Registrieren Sie sich und nehmen Sie an unserer exklusiven Verlosung teil.
-</p>
-
-<input
-id="name"
-type="text"
-placeholder="Vor- und Nachname">
-
-<input
-id="email"
-type="email"
-placeholder="E-Mail">
-
-<button onclick="registerUser()">
-Registrieren
-</button>
-
-</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-function registerUser(){
+const supabase = window.supabase.createClient(
+'https://bxkardmynndlccqzhpkq.supabase.co',
+'sb_publishable_FzlQMCAuxa6wt4AxbayKYA_-qEs20WH'
+);
+
+async function registerUser(){
 
 const name =
 document.getElementById("name").value.trim();
@@ -120,22 +22,22 @@ return;
 
 }
 
-localStorage.setItem(
-"guestName",
-name
-);
+const result = await supabase
+.from("bookings")
+.insert([
+{
+name:name,
+email:email
+}
+]);
 
-localStorage.setItem(
-"guestEmail",
-email
-);
+console.log(result);
 
-window.location.href =
-"hotel.html";
+localStorage.setItem("guestName",name);
+localStorage.setItem("guestEmail",email);
+
+window.location.href="hotel.html";
 
 }
 
 </script>
-
-</body>
-</html>

@@ -8,7 +8,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -76,7 +75,6 @@ cursor:pointer;
 button:hover{
 opacity:.9;
 }
-
 </style>
 </head>
 
@@ -109,6 +107,8 @@ Registrieren
 
 <script>
 
+alert("JavaScript geladen");
+
 const supabaseUrl =
 'https://bxkardmynndlccqzhpkq.supabase.co';
 
@@ -122,6 +122,8 @@ supabaseKey
 );
 
 async function registerUser(){
+
+alert("Кнопка работает");
 
 const name =
 document.getElementById("name").value.trim();
@@ -142,6 +144,8 @@ document.querySelector("button");
 button.disabled = true;
 button.innerText = "Speichern...";
 
+try{
+
 const { error } = await supabase
 .from("bookings")
 .insert([
@@ -153,11 +157,9 @@ email:email
 
 if(error){
 
-console.log(error);
-
 alert(
-"Fehler beim Speichern:\n" +
-error.message
+"SUPABASE FEHLER:\n" +
+JSON.stringify(error)
 );
 
 button.disabled = false;
@@ -166,6 +168,8 @@ button.innerText = "Registrieren";
 return;
 
 }
+
+alert("Gespeichert!");
 
 localStorage.setItem(
 "guestName",
@@ -179,6 +183,18 @@ email
 
 window.location.href =
 "hotel.html";
+
+}catch(err){
+
+alert(
+"JS FEHLER:\n" +
+err.message
+);
+
+button.disabled = false;
+button.innerText = "Registrieren";
+
+}
 
 }
 

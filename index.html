@@ -1,16 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>TEST</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nimerland-Hotel | Registrierung</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:
+linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),
+url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80");
+background-size:cover;
+background-position:center;
+color:white;
+}
+
+.box{
+width:90%;
+max-width:550px;
+background:rgba(17,17,17,.95);
+padding:40px;
+border-radius:20px;
+border:2px solid #22c55e;
+text-align:center;
+}
+
+h1{
+color:#22c55e;
+margin-bottom:20px;
+font-size:2.5rem;
+}
+
+p{
+margin-bottom:25px;
+line-height:1.6;
+}
+
+input{
+width:100%;
+padding:15px;
+margin:10px 0;
+border:none;
+border-radius:10px;
+background:#222;
+color:white;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:15px;
+margin-top:15px;
+background:#22c55e;
+border:none;
+border-radius:30px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+opacity:.9;
+}
+</style>
 </head>
-<body style="background:black;color:white;text-align:center;padding-top:100px">
 
-<h1>TEST</h1>
+<body>
 
-<button onclick="window.location.href='hotel.html'">
-HOTEL ÖFFNEN
+<div class="box">
+
+<h1>Nimerland-Hotel</h1>
+
+<p>
+Willkommen zur Hochzeitsmesse 2026.<br>
+Registrieren Sie sich und nehmen Sie an unserer exklusiven Verlosung teil.
+</p>
+
+<input
+id="name"
+type="text"
+placeholder="Vor- und Nachname">
+
+<input
+id="email"
+type="email"
+placeholder="E-Mail">
+
+<button onclick="registerUser()">
+Registrieren
 </button>
+
+</div>
+
+<script>
+
+function registerUser(){
+
+const name =
+document.getElementById("name").value.trim();
+
+const email =
+document.getElementById("email").value.trim();
+
+if(!name || !email){
+
+alert("Bitte alle Felder ausfüllen");
+return;
+
+}
+
+localStorage.setItem(
+"guestName",
+name
+);
+
+localStorage.setItem(
+"guestEmail",
+email
+);
+
+window.location.href =
+"hotel.html";
+
+}
+
+</script>
 
 </body>
 </html>

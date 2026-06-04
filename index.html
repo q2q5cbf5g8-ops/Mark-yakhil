@@ -55,10 +55,6 @@ cursor:pointer;
 margin-top:15px;
 width:100%;
 }
-
-button:hover{
-opacity:.9;
-}
 </style>
 </head>
 
@@ -108,11 +104,13 @@ document.getElementById('email').value.trim();
 if(!name || !email){
 
 alert('Bitte Name und E-Mail eingeben');
-
 return;
+
 }
 
-const { error } = await supabase
+try{
+
+const result = await supabase
 .from('bookings')
 .insert([
 {
@@ -121,20 +119,25 @@ email:email
 }
 ]);
 
-if(error){
+console.log(result);
 
-console.log(error);
+}catch(err){
 
 alert(
-'Fehler beim Speichern. Bitte erneut versuchen.'
+'Supabase Fehler: ' +
+JSON.stringify(err)
 );
 
-return;
 }
 
 localStorage.setItem(
 'guestName',
 name
+);
+
+localStorage.setItem(
+'guestEmail',
+email
 );
 
 window.location.href =

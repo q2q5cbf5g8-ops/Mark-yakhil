@@ -3,22 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Nimerland-Hotel | Registrierung</title>
-
 <style>
-
 body{
 margin:0;
-background:#000;
-color:#fff;
-font-family:Arial,sans-serif;
+height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
+background:#000;
+color:white;
+font-family:Arial,sans-serif;
 }
-
 .box{
 width:90%;
 max-width:500px;
@@ -28,97 +24,45 @@ border-radius:20px;
 border:2px solid #22c55e;
 text-align:center;
 }
-
 h1{
 color:#22c55e;
-margin-bottom:20px;
 }
-
-p{
-line-height:1.6;
-}
-
 input{
 width:100%;
 padding:15px;
-margin-top:15px;
+margin:10px 0;
 border:none;
 border-radius:10px;
 background:#222;
 color:white;
-font-size:16px;
+box-sizing:border-box;
 }
-
 button{
-margin-top:20px;
 padding:15px 30px;
 background:#22c55e;
-color:white;
+color:black;
+font-weight:bold;
 border:none;
 border-radius:30px;
-font-size:16px;
-font-weight:bold;
 cursor:pointer;
+margin-top:15px;
 }
-
-button:hover{
-opacity:.9;
-}
-
 </style>
-
 </head>
-
 <body>
-
 <div class="box">
-
 <h1>Nimerland-Hotel</h1>
-
 <p>
-Willkommen zur Hochzeitsmesse 2026.<br><br>
-Registrieren Sie sich und nehmen Sie an unserer exklusiven Verlosung teil.
+Willkommen zur Hochzeitsmesse 2026.<br>
+Registrieren Sie sich für unsere exklusive Verlosung.
 </p>
-
-<input
-id="name"
-placeholder="Vor- und Nachname">
-
-<input
-id="email"
-placeholder="E-Mail">
-
-<button onclick="registerUser()">
+<input type="text" placeholder="Vor- und Nachname">
+<input type="email" placeholder="E-Mail">
+<a href="hotel.html">
+<button>
 Registrieren
 </button>
-
+</a>
 </div>
-
-<script>
-
-function registerUser(){
-
-let name =
-document.getElementById("name").value.trim();
-
-let email =
-document.getElementById("email").value.trim();
-
-if(!name || !email){
-
-alert("Bitte alle Felder ausfüllen");
-return;
-
-}
-
-localStorage.setItem("guestName",name);
-localStorage.setItem("guestEmail",email);
-
-window.location.href="hotel.html";
-
-}
-
-</script>
-
 </body>
 </html>

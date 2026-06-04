@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nimerland-Hotel | Registrierung</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 body{
 margin:0;
@@ -15,6 +18,7 @@ background:#000;
 color:white;
 font-family:Arial,sans-serif;
 }
+
 .box{
 width:90%;
 max-width:500px;
@@ -24,9 +28,11 @@ border-radius:20px;
 border:2px solid #22c55e;
 text-align:center;
 }
+
 h1{
 color:#22c55e;
 }
+
 input{
 width:100%;
 padding:15px;
@@ -37,6 +43,7 @@ background:#222;
 color:white;
 box-sizing:border-box;
 }
+
 button{
 padding:15px 30px;
 background:#22c55e;
@@ -46,23 +53,96 @@ border:none;
 border-radius:30px;
 cursor:pointer;
 margin-top:15px;
+width:100%;
+}
+
+button:hover{
+opacity:.9;
 }
 </style>
 </head>
+
 <body>
+
 <div class="box">
+
 <h1>Nimerland-Hotel</h1>
+
 <p>
 Willkommen zur Hochzeitsmesse 2026.<br>
 Registrieren Sie sich für unsere exklusive Verlosung.
 </p>
-<input type="text" placeholder="Vor- und Nachname">
-<input type="email" placeholder="E-Mail">
-<a href="hotel.html">
-<button>
+
+<input id="name" type="text" placeholder="Vor- und Nachname">
+
+<input id="email" type="email" placeholder="E-Mail">
+
+<button onclick="registerUser()">
 Registrieren
 </button>
-</a>
+
 </div>
+
+<script>
+
+const supabaseUrl =
+'https://bxkardmynndlccqzhpkq.supabase.co';
+
+const supabaseKey =
+'sb_publishable_FzlQMCAuxa6wt4AxbayKYA_-qEs20WH';
+
+const supabase =
+window.supabase.createClient(
+supabaseUrl,
+supabaseKey
+);
+
+async function registerUser(){
+
+const name =
+document.getElementById('name').value.trim();
+
+const email =
+document.getElementById('email').value.trim();
+
+if(!name || !email){
+
+alert('Bitte Name und E-Mail eingeben');
+
+return;
+}
+
+const { error } = await supabase
+.from('bookings')
+.insert([
+{
+name:name,
+email:email
+}
+]);
+
+if(error){
+
+console.log(error);
+
+alert(
+'Fehler beim Speichern. Bitte erneut versuchen.'
+);
+
+return;
+}
+
+localStorage.setItem(
+'guestName',
+name
+);
+
+window.location.href =
+'hotel.html';
+
+}
+
+</script>
+
 </body>
 </html>

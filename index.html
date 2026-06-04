@@ -1,43 +1,77 @@
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nimerland-Hotel | Registrierung</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#000;
+color:white;
+}
+.box{
+width:90%;
+max-width:550px;
+background:#111;
+padding:40px;
+border-radius:20px;
+border:2px solid #22c55e;
+text-align:center;
+}
+h1{color:#22c55e;margin-bottom:20px}
+input{
+width:100%;
+padding:15px;
+margin:10px 0;
+border:none;
+border-radius:10px;
+background:#222;
+color:white;
+}
+button{
+width:100%;
+padding:15px;
+margin-top:15px;
+background:#22c55e;
+border:none;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>Nimerland-Hotel</h1>
+<p>
+Willkommen zur Hochzeitsmesse 2026.<br>
+Registrieren Sie sich für unsere Verlosung.
+</p>
+<input id="name" placeholder="Vor- und Nachname">
+<input id="email" placeholder="E-Mail">
+<button onclick="registerUser()">
+Registrieren
+</button>
+</div>
 <script>
-
-const supabase = window.supabase.createClient(
-'https://bxkardmynndlccqzhpkq.supabase.co',
-'sb_publishable_FzlQMCAuxa6wt4AxbayKYA_-qEs20WH'
-);
-
-async function registerUser(){
-
+function registerUser(){
 const name =
 document.getElementById("name").value.trim();
-
 const email =
 document.getElementById("email").value.trim();
-
 if(!name || !email){
-
 alert("Bitte alle Felder ausfüllen");
 return;
-
 }
-
-const result = await supabase
-.from("bookings")
-.insert([
-{
-name:name,
-email:email
-}
-]);
-
-console.log(result);
-
 localStorage.setItem("guestName",name);
 localStorage.setItem("guestEmail",email);
-
 window.location.href="hotel.html";
-
 }
-
 </script>
+</body>
+</html>

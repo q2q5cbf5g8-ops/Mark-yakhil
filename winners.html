@@ -6,106 +6,258 @@
 <title>Gewinner | Nimerland-Hotel</title>
 
 <style>
-body{
-background:#000;
-color:white;
-font-family:Arial,sans-serif;
+
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0b0b0b;
+color:white;
+min-height:100vh;
 padding:40px;
 }
 
 h1{
 text-align:center;
-color:#22c55e;
+color:#d4af37;
+font-size:3rem;
+margin-bottom:15px;
+}
+
+.subtitle{
+text-align:center;
+max-width:800px;
+margin:auto;
 margin-bottom:40px;
+color:#ddd;
+line-height:1.8;
 }
 
 .card{
-max-width:800px;
+max-width:900px;
 margin:auto;
-background:#111;
-padding:30px;
-border-radius:20px;
-border:1px solid #22c55e;
+background:#141414;
+padding:40px;
+border-radius:25px;
+border:1px solid #d4af37;
+box-shadow:0 0 30px rgba(212,175,55,.2);
+}
+
+#winnerList{
+margin-top:30px;
 }
 
 .winner{
-padding:15px;
-margin:15px 0;
-background:#1a1a1a;
-border-left:5px solid #22c55e;
-border-radius:10px;
+padding:20px;
+margin:20px 0;
+border-radius:20px;
 font-size:1.2rem;
+animation:show .8s ease;
+}
+
+.gold{
+background:#2b2200;
+border-left:8px solid gold;
+font-size:1.5rem;
+}
+
+.silver{
+background:#1c1c1c;
+border-left:8px solid silver;
+}
+
+.bronze{
+background:#22170f;
+border-left:8px solid #cd7f32;
+}
+
+.hotel{
+background:#152019;
+border-left:8px solid #4ade80;
+}
+
+.food{
+background:#1f1a07;
+border-left:8px solid #facc15;
 }
 
 button{
-padding:15px 25px;
-background:#22c55e;
+padding:16px 35px;
+background:#d4af37;
 border:none;
-border-radius:30px;
+border-radius:40px;
 font-weight:bold;
+font-size:16px;
 cursor:pointer;
-margin-top:25px;
+margin-top:30px;
 }
+
+button:hover{
+opacity:.9;
+}
+
+.center{
+text-align:center;
+}
+
+@keyframes show{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+footer{
+text-align:center;
+margin-top:40px;
+color:#888;
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>🏆 Gewinner der Verlosung</h1>
+<h1>🏆 Große Verlosung</h1>
+
+<p class="subtitle">
+Vielen Dank für Ihre Teilnahme an der Hochzeitsmesse des Nimerland-Hotels.
+Wir wünschen allen Gästen viel Glück.
+</p>
 
 <div class="card">
 
-<div id="winnerList">
-Klicken Sie auf „Gewinner ziehen“
-</div>
+<div class="center">
 
-<center>
-
-<button onclick="drawWinners()">
+<button id="drawBtn" onclick="drawWinners()">
 Gewinner ziehen
 </button>
 
-</center>
+</div>
+
+<div id="winnerList">
+
+<div style="text-align:center;color:#999;padding:40px;">
+Klicken Sie auf „Gewinner ziehen“
+</div>
 
 </div>
 
+</div>
+
+<footer>
+Nimerland-Hotel • Exklusive Hochzeiten am Meer
+</footer>
+
 <script>
 
-function drawWinners(){
+async function drawWinners(){
 
-let participants = [
+document.getElementById("drawBtn").disabled=true;
 
-"Anna Müller",
-"Max Schmidt",
-"Laura Weber",
-"Leon Fischer",
-"Paul Becker",
-"Emma Wagner",
-"Julia Hoffmann",
-"Noah Klein",
-"Sophie Braun",
-"Lukas Koch"
+let participants=[
+
+"Ali Ahtsham",
+"Jason Julian Brendel",
+"Charlotte Bühring",
+"Monique Sunny Korittke",
+"Alejandro Orea",
+"Marie Sandmann",
+"Jeshua Leon Siegert",
+"Abigail Kiara Soto Sinacas",
+"Dao Thi Thanh Thuy",
+"Imane Tlemsani",
+
+"Nayzila Adelia",
+"Mhoo Indra Cho",
+"Van Trung Chu",
+"Ngoc Sinh Huynh",
+"Muhammad Kholqi Abdillah Isarman",
+"Brandon Jakubeit",
+"Secilia Lenz",
+"Muhammad Abdul Muhyi",
+"Sal Linn Htet Naing Oo",
+"Iqbal Furqoon SW",
+"Thi Minh Ly Vo"
 
 ];
 
 participants.sort(() => Math.random() - 0.5);
 
-let winners = participants.slice(0,5);
+const winners=participants.slice(0,5);
 
-let html="";
+const prizes=[
 
-winners.forEach((winner,index)=>{
+{
+title:"🥇 1. Platz",
+prize:"50% Rabatt auf Ihre Traumhochzeit",
+class:"gold"
+},
 
-html += `
-<div class="winner">
-🏆 Gewinner ${index+1}: <strong>${winner}</strong>
+{
+title:"🥈 2. Platz",
+prize:"30% Rabatt auf Ihre Traumhochzeit",
+class:"silver"
+},
+
+{
+title:"🥉 3. Platz",
+prize:"10% Rabatt auf Ihre Traumhochzeit",
+class:"bronze"
+},
+
+{
+title:"🏨 4. Platz",
+prize:"5 Tage Aufenthalt mit Frühstück im Nimerland-Hotel",
+class:"hotel"
+},
+
+{
+title:"🍽️ 5. Platz",
+prize:"Kostenloses Mittagessen für zwei Personen",
+class:"food"
+}
+
+];
+
+document.getElementById("winnerList").innerHTML=
+'<div style="text-align:center;font-size:1.4rem;color:#d4af37;">Gewinner werden ermittelt...</div>';
+
+await new Promise(r=>setTimeout(r,2000));
+
+document.getElementById("winnerList").innerHTML="";
+
+for(let i=4;i>=0;i--){
+
+let block=`
+
+<div class="winner ${prizes[i].class}">
+${prizes[i].title}<br><br>
+
+<strong>${winners[i]}</strong>
+
+<br><br>
+
+🎁 ${prizes[i].prize}
 </div>
+
 `;
 
-});
+document.getElementById("winnerList").innerHTML=
+block+
+document.getElementById("winnerList").innerHTML;
 
-document.getElementById("winnerList").innerHTML = html;
+await new Promise(r=>setTimeout(r,1800));
+
+}
 
 }
 

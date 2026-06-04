@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nimerland Hotel & Resort</title>
+<title>Nimerland-Hotel</title>
 
 <style>
 
@@ -30,6 +30,7 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 z-index:1000;
+backdrop-filter:blur(10px);
 }
 
 nav h2{
@@ -187,31 +188,45 @@ text-align:center;
 margin-top:60px;
 }
 
+@media(max-width:768px){
+
+.hero h1{
+font-size:3rem;
+}
+
+nav ul{
+display:none;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
 <nav>
-<h2>Nimerland Resort</h2>
+
+<h2>Nimerland-Hotel</h2>
 
 <ul>
 <li><a href="#about">Hotel</a></li>
 <li><a href="#gallery">Galerie</a></li>
-<li><a href="#packages">Pakete</a></li>
+<li><a href="#packages">Angebote</a></li>
 <li><a href="#verlosung">Verlosung</a></li>
 </ul>
+
 </nav>
 
 <header>
 
 <div class="hero">
 
-<h1>Nimerland Hotel & Resort</h1>
+<h1>Nimerland-Hotel</h1>
 
 <p>
-Traumhochzeiten an der italienischen Küste.
-Luxus, Romantik und unvergessliche Momente direkt am Meer.
+Exklusive Hochzeiten am Meer.
+Luxus, Romantik und unvergessliche Momente für Ihren schönsten Tag.
 </p>
 
 <a href="#about" class="btn">
@@ -224,28 +239,28 @@ Mehr entdecken
 
 <section id="about">
 
-<h2 class="title">Warum Nimerland?</h2>
+<h2 class="title">Unsere Hochzeitswelt</h2>
 
 <div class="features">
 
 <div class="feature">
 <h3>🌊 Meerblick</h3>
-<p>Direkt an der Küste mit spektakulären Sonnenuntergängen.</p>
+<p>Direkt am Wasser mit traumhaften Sonnenuntergängen.</p>
 </div>
 
 <div class="feature">
-<h3>💍 Perfekte Hochzeiten</h3>
-<p>Individuelle Planung für den schönsten Tag Ihres Lebens.</p>
+<h3>🏊 Pool & Lounge</h3>
+<p>Exklusive Bereiche für Empfänge und Feiern am Pool.</p>
 </div>
 
 <div class="feature">
-<h3>🍷 Italienische Küche</h3>
-<p>Exklusive Menüs mit regionalen Spezialitäten.</p>
+<h3>💍 Hochzeitsplanung</h3>
+<p>Professionelle Organisation für Ihren perfekten Tag.</p>
 </div>
 
 <div class="feature">
 <h3>🏨 Luxus-Suiten</h3>
-<p>Elegante Zimmer und private Honeymoon-Suiten.</p>
+<p>Elegante Zimmer und romantische Honeymoon-Suiten.</p>
 </div>
 
 </div>
@@ -258,11 +273,11 @@ Mehr entdecken
 
 <div class="gallery">
 
-<img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80">
+<img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1400&q=80">
 
-<img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1200&q=80">
+<img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1400&q=80">
 
-<img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80">
+<img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=80">
 
 </div>
 
@@ -270,23 +285,32 @@ Mehr entdecken
 
 <section id="packages">
 
-<h2 class="title">Hochzeitspakete</h2>
+<h2 class="title">Unsere Angebote</h2>
 
 <div class="packages">
 
 <div class="package">
-<h3>Silver</h3>
-<p>Bis zu 50 Gäste<br><br>Elegante Feier am Meer</p>
+<h3>Silver Paket</h3>
+<p>
+Bis zu 50 Gäste<br><br>
+Feier am Meer mit exklusivem Service
+</p>
 </div>
 
 <div class="package">
-<h3>Gold</h3>
-<p>Bis zu 100 Gäste<br><br>Premium-Service & Gourmet-Menü</p>
+<h3>Gold Paket</h3>
+<p>
+Bis zu 100 Gäste<br><br>
+Premium-Service und individuelles Menü
+</p>
 </div>
 
 <div class="package">
-<h3>Premium</h3>
-<p>Luxus ohne Grenzen<br><br>Exklusive Traumhochzeit</p>
+<h3>Premium Paket</h3>
+<p>
+Luxus-Hochzeit ohne Grenzen<br><br>
+Individuelle Planung und exklusiver Empfang
+</p>
 </div>
 
 </div>
@@ -295,16 +319,16 @@ Mehr entdecken
 
 <section>
 
-<h2 class="title">Bewertungen</h2>
+<h2 class="title">Erfahrungen unserer Gäste</h2>
 
 <div class="review">
 ⭐⭐⭐⭐⭐<br><br>
-Unsere Traumhochzeit wurde Wirklichkeit. Perfekter Service und unglaubliche Aussicht.
+Unsere Traumhochzeit wurde Wirklichkeit. Perfekter Service und eine wunderschöne Atmosphäre direkt am Wasser.
 </div>
 
 <div class="review">
 ⭐⭐⭐⭐⭐<br><br>
-Wunderschöne Location direkt am Meer. Unsere Gäste waren begeistert.
+Unvergessliche Momente, traumhafte Location und ein professionelles Team.
 </div>
 
 </section>
@@ -325,7 +349,7 @@ Wunderschöne Location direkt am Meer. Unsere Gäste waren begeistert.
 Auslosung starten
 </button>
 
-<br>
+<br><br>
 
 <button id="winnerBtn"
 onclick="window.location.href='winners.html'">
@@ -340,10 +364,10 @@ Gewinner anzeigen
 
 <footer>
 
-<h3>Nimerland Hotel & Resort</h3>
+<h3>Nimerland-Hotel</h3>
 
 <p>
-Romantische Hochzeiten an der italienischen Küste
+Exklusive Hochzeiten am Meer
 </p>
 
 </footer>
@@ -360,13 +384,11 @@ started=true;
 
 let seconds=10;
 
-const timer=
-document.getElementById("timer");
+const timer=document.getElementById("timer");
 
 let interval=setInterval(()=>{
 
 let m=Math.floor(seconds/60);
-
 let s=seconds%60;
 
 timer.innerText=

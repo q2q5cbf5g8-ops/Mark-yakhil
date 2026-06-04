@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nimerland-Hotel | Registrierung</title>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <style>
 *{
 margin:0;
@@ -14,7 +12,6 @@ padding:0;
 box-sizing:border-box;
 font-family:Arial,sans-serif;
 }
-
 body{
 height:100vh;
 display:flex;
@@ -23,7 +20,6 @@ align-items:center;
 background:#000;
 color:white;
 }
-
 .box{
 width:90%;
 max-width:550px;
@@ -33,12 +29,10 @@ border-radius:20px;
 border:2px solid #22c55e;
 text-align:center;
 }
-
 h1{
 color:#22c55e;
 margin-bottom:20px;
 }
-
 input{
 width:100%;
 padding:15px;
@@ -48,7 +42,6 @@ border-radius:10px;
 background:#222;
 color:white;
 }
-
 button{
 width:100%;
 padding:15px;
@@ -61,54 +54,37 @@ cursor:pointer;
 }
 </style>
 </head>
-
 <body>
-
 <div class="box">
-
 <h1>Nimerland-Hotel</h1>
-
 <p>
 Willkommen zur Hochzeitsmesse 2026.<br>
 Registrieren Sie sich für unsere Verlosung.
 </p>
-
 <input id="name" placeholder="Vor- und Nachname">
-
 <input id="email" placeholder="E-Mail">
-
 <button onclick="registerUser()">
 Registrieren
 </button>
-
 </div>
-
 <script>
-  alert("VERSION 123");
-
+alert("SCRIPT START");
 const supabase = window.supabase.createClient(
 'https://bxkardmynndlccqzhpkq.supabase.co',
 'sb_publishable_FzlQMCAuxa6wt4AxbayKYA_-qEs20WH'
 );
-
 async function registerUser(){
-
+alert("BUTTON CLICKED");
 const name =
 document.getElementById("name").value.trim();
-
 const email =
 document.getElementById("email").value.trim();
-
 if(!name || !email){
-
 alert("Bitte alle Felder ausfüllen");
 return;
-
 }
-
 try{
-
-const { error } = await supabase
+const result = await supabase
 .from("bookings")
 .insert([
 {
@@ -116,38 +92,15 @@ name:name,
 email:email
 }
 ]);
-
-if(error){
-
-alert("Fehler: " + error.message);
-console.log(error);
-return;
-
-}
-
-localStorage.setItem(
-"guestName",
-name
-);
-
-localStorage.setItem(
-"guestEmail",
-email
-);
-
+alert(JSON.stringify(result));
+if(!result.error){
 window.location.href =
 "hotel.html";
-
+}
 }catch(err){
-
-alert("JavaScript Fehler");
-console.log(err);
-
+alert("JS ERROR: " + err.message);
 }
-
 }
-
 </script>
-
 </body>
 </html>

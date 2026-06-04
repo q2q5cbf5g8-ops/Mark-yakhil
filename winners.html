@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gewinner | Nimerland-Hotel</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+body{
+background:#000;
+color:white;
+font-family:Arial,sans-serif;
+margin:0;
+padding:40px;
+}
+
+h1{
+text-align:center;
+color:#22c55e;
+margin-bottom:40px;
+}
+
+.card{
+max-width:800px;
+margin:auto;
+background:#111;
+padding:30px;
+border-radius:20px;
+border:1px solid #22c55e;
+}
+
+.winner{
+padding:15px;
+margin:15px 0;
+background:#1a1a1a;
+border-left:5px solid #22c55e;
+border-radius:10px;
+font-size:1.2rem;
+}
+
+button{
+padding:15px 25px;
+background:#22c55e;
+border:none;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+margin-top:25px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🏆 Gewinner der Verlosung</h1>
+
+<div class="card">
+
+<div id="winnerList">
+
+Lade Teilnehmer...
+
+</div>
+
+<center>
+
+<button onclick="drawWinners()">
+Gewinner ziehen
+</button>
+
+</center>
+
+</div>
+
+<script>
+
+const supabaseUrl =
+'https://bxkardmynndlccqzhpkq.supabase.co';
+
+const supabaseKey =
+'sb_publishable_FzlQMCAuxa6wt4AxbayKYA_-qEs20WH';
+
+const supabase =
+window.supabase.createClient(
+supabaseUrl,
+supabaseKey
+);
+
+async function drawWinners(){
+
+const { data,error } =
+await supabase
+.from('bookings')
+.select('*');
+
+if(error){
+
+document.getElementById(
+'winnerList'
+).innerHTML='Fehler beim Laden';
+
+return;
+}
+
+if(!data || data.length===0){
+
+document.getElementById(
+'winnerList'
+).innerHTML=
+'Keine Teilnehmer gefunden';
+
+return;
+}
+
+let pool=[...data];
+
+let winners=[];
+
+for(
+let i=0;
+i<Math.min(5,pool.length);
+i++
+){
+
+let randomIndex=
+Math.floor(
+Math.random()*pool.length
+);
+
+winners.push(
+pool.splice(randomIndex,1)[0]
+);
+
+}
+
+let html='';
+
+winners.forEach((winner,index)=>{
+
+html += `
+<div class="winner">
+🥇 Gewinner ${index+1}: 
+<strong>${winner.name}</strong>
+</div>
+`;
+
+});
+
+document.getElementById(
+'winnerList'
+).innerHTML=html;
+
+}
+
+</script>
+
+</body>
+</html>

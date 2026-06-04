@@ -4,72 +4,313 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nimerland-Hotel | Registrierung</title>
+
 <style>
-body{
+
+*{
 margin:0;
-height:100vh;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=2000&q=80");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+color:white;
+
+min-height:100vh;
+
 display:flex;
 justify-content:center;
 align-items:center;
-background:#000;
-color:white;
-font-family:Arial,sans-serif;
+
+padding:20px;
+
 }
+
 .box{
-width:90%;
-max-width:500px;
-background:#111;
-padding:40px;
-border-radius:20px;
-border:2px solid #22c55e;
-text-align:center;
-}
-input{
+
 width:100%;
-padding:15px;
-margin:10px 0;
-border:none;
-border-radius:10px;
-background:#222;
-color:white;
-box-sizing:border-box;
-}
-button{
-width:100%;
-padding:15px;
-background:#22c55e;
-border:none;
+max-width:650px;
+
+background:rgba(15,15,15,.95);
+
+padding:50px;
+
 border-radius:30px;
-font-weight:bold;
-cursor:pointer;
-margin-top:15px;
+
+border:2px solid #d4af37;
+
+box-shadow:0 0 40px rgba(212,175,55,.25);
+
+text-align:center;
+
+backdrop-filter:blur(10px);
+
 }
+
+.logo{
+
+font-size:3.2rem;
+
+color:#d4af37;
+
+margin-bottom:15px;
+
+}
+
+.subtitle{
+
+font-size:1.2rem;
+
+line-height:1.8;
+
+color:#ddd;
+
+margin-bottom:30px;
+
+}
+
+.info{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:10px;
+
+margin-bottom:30px;
+
+}
+
+.infoCard{
+
+background:#181818;
+
+padding:15px;
+
+border-radius:15px;
+
+border:1px solid rgba(212,175,55,.3);
+
+font-size:.9rem;
+
+}
+
+input{
+
+width:100%;
+
+padding:16px;
+
+margin:10px 0;
+
+border:none;
+
+border-radius:12px;
+
+background:#242424;
+
+color:white;
+
+font-size:16px;
+
+}
+
+input:focus{
+
+outline:2px solid #d4af37;
+
+}
+
+button{
+
+width:100%;
+
+padding:18px;
+
+margin-top:15px;
+
+background:#d4af37;
+
+color:black;
+
+border:none;
+
+border-radius:40px;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+button:hover{
+
+opacity:.9;
+
+}
+
+.features{
+
+margin-top:30px;
+
+text-align:left;
+
+line-height:2;
+
+color:#ddd;
+
+}
+
+.footerText{
+
+margin-top:30px;
+
+color:#999;
+
+font-size:.9rem;
+
+}
+
+@media(max-width:700px){
+
+.info{
+grid-template-columns:1fr;
+}
+
+.logo{
+font-size:2.5rem;
+}
+
+}
+
 </style>
+
 </head>
+
 <body>
+
 <div class="box">
-<h1>Nimerland-Hotel</h1>
-<p>
+
+<h1 class="logo">
+Nimerland-Hotel
+</h1>
+
+<p class="subtitle">
+
 Willkommen zur Hochzeitsmesse 2026.
+
+<br><br>
+
+Registrieren Sie sich jetzt und sichern Sie sich die Chance auf exklusive Gewinne, Hotelaufenthalte und attraktive Rabatte für Ihre Traumhochzeit.
+
 </p>
-<input id="name" placeholder="Vor- und Nachname">
-<input id="email" placeholder="E-Mail">
-<button onclick="registerUser()">
-Registrieren
-</button>
+
+<div class="info">
+
+<div class="infoCard">
+🌊 Direkt am Meer
 </div>
+
+<div class="infoCard">
+💍 Exklusive Hochzeiten
+</div>
+
+<div class="infoCard">
+🏨 Luxus-Suiten
+</div>
+
+</div>
+
+<input
+id="name"
+type="text"
+placeholder="Vor- und Nachname">
+
+<input
+id="email"
+type="email"
+placeholder="E-Mail-Adresse">
+
+<button onclick="registerUser()">
+Jetzt registrieren
+</button>
+
+<div class="features">
+
+✓ Teilnahme an der großen Verlosung
+
+<br>
+
+✓ Exklusive Hochzeitsangebote
+
+<br>
+
+✓ Luxuriöse Eventlocations
+
+<br>
+
+✓ Persönliche Beratung vor Ort
+
+<br>
+
+✓ Traumhafte Feier direkt am Wasser
+
+</div>
+
+<div class="footerText">
+
+Über 150 Hochzeiten pro Jahr • 98% zufriedene Gäste
+
+</div>
+
+</div>
+
 <script>
+
 function registerUser(){
+
 const name =
 document.getElementById("name").value.trim();
+
 const email =
 document.getElementById("email").value.trim();
+
 if(!name || !email){
+
 alert("Bitte alle Felder ausfüllen");
+
 return;
+
 }
-window.location.href = "hotel.html";
+
+localStorage.setItem(
+"guestName",
+name
+);
+
+localStorage.setItem(
+"guestEmail",
+email
+);
+
+window.location.href =
+"hotel.html";
+
 }
+
 </script>
+
 </body>
 </html>

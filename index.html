@@ -4,34 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nimerland-Hotel | Registrierung</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
 body{
+margin:0;
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 background:#000;
 color:white;
+font-family:Arial,sans-serif;
 }
 .box{
 width:90%;
-max-width:550px;
+max-width:500px;
 background:#111;
 padding:40px;
 border-radius:20px;
 border:2px solid #22c55e;
 text-align:center;
-}
-h1{
-color:#22c55e;
-margin-bottom:20px;
 }
 input{
 width:100%;
@@ -41,16 +32,17 @@ border:none;
 border-radius:10px;
 background:#222;
 color:white;
+box-sizing:border-box;
 }
 button{
 width:100%;
 padding:15px;
-margin-top:15px;
 background:#22c55e;
 border:none;
 border-radius:30px;
 font-weight:bold;
 cursor:pointer;
+margin-top:15px;
 }
 </style>
 </head>
@@ -58,8 +50,7 @@ cursor:pointer;
 <div class="box">
 <h1>Nimerland-Hotel</h1>
 <p>
-Willkommen zur Hochzeitsmesse 2026.<br>
-Registrieren Sie sich für unsere Verlosung.
+Willkommen zur Hochzeitsmesse 2026.
 </p>
 <input id="name" placeholder="Vor- und Nachname">
 <input id="email" placeholder="E-Mail">
@@ -68,13 +59,7 @@ Registrieren
 </button>
 </div>
 <script>
-alert("SCRIPT START");
-const supabase = window.supabase.createClient(
-'https://bxkardmynndlccqzhpkq.supabase.co',
-'sb_publishable_FzlQMCAuxa6wt4AxbayKYA_-qEs20WH'
-);
-async function registerUser(){
-alert("BUTTON CLICKED");
+function registerUser(){
 const name =
 document.getElementById("name").value.trim();
 const email =
@@ -83,23 +68,7 @@ if(!name || !email){
 alert("Bitte alle Felder ausfüllen");
 return;
 }
-try{
-const result = await supabase
-.from("bookings")
-.insert([
-{
-name:name,
-email:email
-}
-]);
-alert(JSON.stringify(result));
-if(!result.error){
-window.location.href =
-"hotel.html";
-}
-}catch(err){
-alert("JS ERROR: " + err.message);
-}
+window.location.href = "hotel.html";
 }
 </script>
 </body>
